@@ -29,7 +29,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
- * JCache specific implementation of {@link ProxyManager}
+ * Ehcache 2.x specific implementation of {@link ProxyManager}
  *
  * @param <K> type of key for buckets
  */

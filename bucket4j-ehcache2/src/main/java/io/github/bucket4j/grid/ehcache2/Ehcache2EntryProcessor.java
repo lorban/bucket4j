@@ -22,9 +22,7 @@ import io.github.bucket4j.Nothing;
 import io.github.bucket4j.grid.CommandResult;
 import io.github.bucket4j.grid.GridBucketState;
 import io.github.bucket4j.grid.GridCommand;
-import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheException;
-import net.sf.ehcache.Element;
 
 import java.io.Serializable;
 
@@ -48,46 +46,5 @@ public interface Ehcache2EntryProcessor<K extends Serializable, T extends Serial
     }
 
     CommandResult<T> process(MutableEntry<K, GridBucketState> mutableEntry, Object... arguments) throws CacheException;
-
-
-    class MutableEntry<K, V> {
-        private final Cache cache;
-        private final K key;
-        private Element element;
-
-        public MutableEntry(Cache cache, K key, Element element) {
-            this.cache = cache;
-            this.key = key;
-            this.element = element;
-        }
-
-        K getKey() {
-            return key;
-        }
-
-        V getValue() {
-            return element == null ? null : (V) element.getObjectValue();
-        }
-
-        boolean exists() {
-            return element != null;
-        }
-
-        void remove() {
-            if (element != null) {
-                cache.remove(key);
-                element = null;
-            }
-        }
-
-        public Element getElement() {
-            return element;
-        }
-
-        void setValue(V value) {
-            element = new Element(key, value);
-        }
-    }
-
 
 }

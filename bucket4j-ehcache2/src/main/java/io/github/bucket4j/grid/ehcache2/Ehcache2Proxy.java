@@ -39,7 +39,7 @@ public class Ehcache2Proxy<K extends Serializable> implements GridProxy<K> {
     private final Cache cache;
     private final CacheLockProvider cacheLockProvider;
 
-    public Ehcache2Proxy(Cache cache) {
+    Ehcache2Proxy(Cache cache) {
         this.cache = Objects.requireNonNull(cache);
         this.cacheLockProvider = (CacheLockProvider) cache.getInternalContext();
     }
@@ -64,13 +64,13 @@ public class Ehcache2Proxy<K extends Serializable> implements GridProxy<K> {
 
     @Override
     public <T extends Serializable> CompletableFuture<CommandResult<T>> executeAsync(K key, GridCommand<T> command) {
-        // because JCache does not specify async API
+        // because Ehcache 2.x does not specify async API
         throw new UnsupportedOperationException();
     }
 
     @Override
     public <T extends Serializable> CompletableFuture<T> createInitialStateAndExecuteAsync(K key, BucketConfiguration configuration, GridCommand<T> command) {
-        // because JCache does not specify async API
+        // because Ehcache 2.x does not specify async API
         throw new UnsupportedOperationException();
     }
 
@@ -99,7 +99,7 @@ public class Ehcache2Proxy<K extends Serializable> implements GridProxy<K> {
             Element element = cache.get(key);
 
             // process
-            Ehcache2EntryProcessor.MutableEntry<K, GridBucketState> mutableEntry = new Ehcache2EntryProcessor.MutableEntry<>(cache, key, element);
+            MutableEntry<K, GridBucketState> mutableEntry = new MutableEntry<>(cache, key, element);
             CommandResult<T> result = entryProcessor.process(mutableEntry);
 
             // put

@@ -29,7 +29,7 @@ import java.io.Serializable;
 /**
  * {@inheritDoc}
  *
- * This builder creates the buckets backed by any <a href="https://www.jcp.org/en/jsr/detail?id=107">JCache API (JSR 107)</a> implementation.
+ * This builder creates the buckets backed by Ehcache 2.x.
  *
  */
 public class Ehcache2BucketBuilder extends AbstractBucketBuilder<Ehcache2BucketBuilder> {
