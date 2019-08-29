@@ -23,7 +23,7 @@ import io.github.bucket4j.grid.CommandResult;
 import io.github.bucket4j.grid.GridBucketState;
 import io.github.bucket4j.grid.GridCommand;
 import io.github.bucket4j.grid.GridProxy;
-import net.sf.ehcache.Cache;
+import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
 import net.sf.ehcache.concurrent.CacheLockProvider;
 import net.sf.ehcache.concurrent.LockType;
@@ -36,10 +36,10 @@ import java.util.concurrent.CompletableFuture;
 
 public class Ehcache2Proxy<K extends Serializable> implements GridProxy<K> {
 
-    private final Cache cache;
+    private final Ehcache cache;
     private final CacheLockProvider cacheLockProvider;
 
-    Ehcache2Proxy(Cache cache) {
+    Ehcache2Proxy(Ehcache cache) {
         this.cache = Objects.requireNonNull(cache);
         this.cacheLockProvider = (CacheLockProvider) cache.getInternalContext();
     }

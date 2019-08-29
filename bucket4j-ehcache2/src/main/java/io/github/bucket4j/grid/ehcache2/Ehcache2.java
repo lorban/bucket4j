@@ -19,7 +19,7 @@ package io.github.bucket4j.grid.ehcache2;
 
 import io.github.bucket4j.Extension;
 import io.github.bucket4j.grid.ProxyManager;
-import net.sf.ehcache.Cache;
+import net.sf.ehcache.Ehcache;
 
 import java.io.Serializable;
 
@@ -45,7 +45,7 @@ public class Ehcache2 implements Extension<Ehcache2BucketBuilder> {
      * @param <T> type of keys in the cache
      * @return {@link ProxyManager} for specified cache.
      */
-    public <T extends Serializable> ProxyManager<T> proxyManagerForCache(Cache cache) {
+    public <T extends Serializable> ProxyManager<T> proxyManagerForCache(Ehcache cache) {
         return new Ehcache2ProxyManager<>(cache);
     }
 

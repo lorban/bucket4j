@@ -18,12 +18,12 @@
 package io.github.bucket4j.grid.ehcache2;
 
 import io.github.bucket4j.AbstractBucketBuilder;
+import io.github.bucket4j.Bucket;
 import io.github.bucket4j.BucketConfiguration;
 import io.github.bucket4j.grid.GridBucket;
 import io.github.bucket4j.grid.RecoveryStrategy;
-import io.github.bucket4j.Bucket;
+import net.sf.ehcache.Ehcache;
 
-import net.sf.ehcache.Cache;
 import java.io.Serializable;
 
 /**
@@ -52,7 +52,7 @@ public class Ehcache2BucketBuilder extends AbstractBucketBuilder<Ehcache2BucketB
      * <p>
      * Use this method if and only if you need to full control over bucket lifecycle(especially specify {@link RecoveryStrategy}),
      * and you have clean caching strategy which suitable for storing buckets,
-     * else it would be better to work through {@link Ehcache2#proxyManagerForCache(Cache) ProxyManager},
+     * else it would be better to work through {@link Ehcache2#proxyManagerForCache(Ehcache) ProxyManager},
      * which does not require any caching, because ProxyManager operates with light-weight versions of buckets.
      *
      * @param cache distributed cache which will hold bucket inside cluster.
@@ -63,7 +63,7 @@ public class Ehcache2BucketBuilder extends AbstractBucketBuilder<Ehcache2BucketB
      *
      * @return new distributed bucket
      */
-    public <K extends Serializable> Bucket build(Cache cache, K key, RecoveryStrategy recoveryStrategy) {
+    public <K extends Serializable> Bucket build(Ehcache cache, K key, RecoveryStrategy recoveryStrategy) {
         BucketConfiguration configuration = buildConfiguration();
         Ehcache2Proxy<K> gridProxy = new Ehcache2Proxy<>(cache);
         return GridBucket.createInitializedBucket(key, configuration, gridProxy, recoveryStrategy);

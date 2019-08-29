@@ -19,10 +19,10 @@ package io.github.bucket4j.grid.ehcache2;
 
 import io.github.bucket4j.Bucket;
 import io.github.bucket4j.BucketConfiguration;
-import io.github.bucket4j.grid.ProxyManager;
 import io.github.bucket4j.grid.GridBucket;
 import io.github.bucket4j.grid.GridProxy;
-import net.sf.ehcache.Cache;
+import io.github.bucket4j.grid.ProxyManager;
+import net.sf.ehcache.Ehcache;
 
 import java.io.Serializable;
 import java.util.Optional;
@@ -37,7 +37,7 @@ public class Ehcache2ProxyManager<K extends Serializable> implements ProxyManage
 
     private final GridProxy<K> gridProxy;
 
-    Ehcache2ProxyManager(Cache cache) {
+    Ehcache2ProxyManager(Ehcache cache) {
         if (cache == null) {
             throw new IllegalArgumentException("cache must not be null");
         }
