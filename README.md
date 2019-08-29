@@ -27,6 +27,7 @@ As mentioned above in addition to local in-memory buckets, the Bucket4j supports
 | ```Apache Ignite```        | [bucket4j-ignite](doc-pages/ignite.md)              | Yes             |
 | ```Inifinispan```          | [bucket4j-infinspan](doc-pages/infinispan.md)       | Yes             |
 | ```Oracle Coherence```     | [bucket4j-coherence](doc-pages/coherence.md)        | Yes             | 
+| ```Ehcache 2.x```          | [bucket4j-ehcache2](doc-pages/ehcache2.md)          | No              | 
 
 ## General documentation
 #### Basics:
