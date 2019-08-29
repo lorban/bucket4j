@@ -80,6 +80,10 @@ public interface Ehcache2EntryProcessor<K extends Serializable, T extends Serial
             }
         }
 
+        public Element getElement() {
+            return element;
+        }
+
         void setValue(V value) {
             element = new Element(key, value);
         }

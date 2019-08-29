@@ -104,7 +104,7 @@ public class Ehcache2Proxy<K extends Serializable> implements GridProxy<K> {
 
             // put
             if (mutableEntry.exists()) {
-                cache.put(new Element(key, result.getData()));
+                cache.put(mutableEntry.getElement());
             }
 
             return result;
